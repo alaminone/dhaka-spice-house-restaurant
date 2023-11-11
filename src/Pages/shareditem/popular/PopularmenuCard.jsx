@@ -5,7 +5,7 @@ const PopularmenuCard = ({menuitem}) => {
     const {name,recipe,image,price} = menuitem;
   return (
     <div className='flex gap-4'>
-        <img style={{borderRadius:'0 200px 200px 200px'}} className='w-[120px]' src={image} alt="" />
+        <img style={{borderRadius:'0 200px 200px 200px'}} className='w-[100px] h-[100px]' src={image} alt="" />
         <div>
             <h3 className='font-medium text-xl'>{name}---------------</h3>
             <p className='text-slate-300'>{recipe}</p>
