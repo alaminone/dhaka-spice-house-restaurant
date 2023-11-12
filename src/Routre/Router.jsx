@@ -23,7 +23,7 @@ import OrderPage from "../Pages/orderpage/OrderPage";
           element:<Menu></Menu>
         },
         {
-          path:"/order/:category",
+          path:"order/:category",
           element:<OrderPage></OrderPage>
         }
       ]

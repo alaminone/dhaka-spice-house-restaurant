@@ -6,7 +6,7 @@ const Navbar = () => {
     const sharenavlink =<>
     <li ><Link to={"/"}>Home</Link></li>
     <li ><Link to={"/menu"}>Menu</Link></li>
-    <li ><Link to={"/order"}>Order Now</Link></li>
+    <li ><Link to={"/order/salad"}>Order Now</Link></li>
     </>
     return (
         <div className="navbar bg-slate-800 fixed z-10 opacity-70 text-white max-w-7xl">

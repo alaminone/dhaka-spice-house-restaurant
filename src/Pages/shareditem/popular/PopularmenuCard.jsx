@@ -16,7 +16,7 @@ const PopularmenuCard = ({menuitem}) => {
         </p>
         
     </div>
-    <button className='text-black'>hhhhh</button>
+ 
   </div>
   )
 }
