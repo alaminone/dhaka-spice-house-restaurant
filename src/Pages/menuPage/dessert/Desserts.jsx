@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import useMenuhuk from "../../../huks/menuhuk/usemenuhuk";
 import Cover from "../../shareditem/cover/Cover";
 import PopularmenuCard from "../../shareditem/popular/PopularmenuCard";
@@ -28,8 +29,10 @@ const Desserts = () => {
        ))}
      </div>
      <div className="flex justify-center mb-6">
-       <button className="btn btn-outline border-l-0  border-t-0 border-r-0 border-b-4">
-       ORDER YOUR FAVOURITE FOOD        </button>
+        <Link to={`/order/${desserts}`}>
+        <button className="btn btn-outline border-l-0  border-t-0 border-r-0 border-b-4">
+       ORDER YOUR FAVOURITE FOOD </button>
+        </Link>
      </div>
    </div>
         </div>
