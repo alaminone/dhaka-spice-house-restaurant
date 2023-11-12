@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 const PopularmenuCard = ({menuitem}) => {
     const {name,recipe,image,price} = menuitem;
   return (
-    <div className='flex gap-4'>
+    <div className='flex gap-4 mx-3 md:mx-0'>
         <img style={{borderRadius:'0 200px 200px 200px'}} className='w-[100px] h-[100px]' src={image} alt="" />
         <div>
             <h3 className='font-medium text-xl'>{name}---------------</h3>
@@ -13,6 +13,7 @@ const PopularmenuCard = ({menuitem}) => {
         <p className='text-[#D99904]'>
             ${price}
         </p>
+        
     </div>
   )
 }
