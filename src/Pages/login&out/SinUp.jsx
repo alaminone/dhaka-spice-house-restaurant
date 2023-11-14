@@ -54,17 +54,17 @@ const SinUp = () => {
     };
 
     return (
-        <>
+        < section  style={{background:`url(https://i.ibb.co/NZKF5cJ/authentication.png)`}}>
             <Helmet>
                 <title>Bistro Boss | Sign Up</title>
             </Helmet>
-            <div className="hero min-h-screen bg-base-200">
-                <div className="hero-content flex-col lg:flex-row-reverse">
-                    <div className="text-center lg:text-left">
-                        <h1 className="text-5xl font-bold">Sign up now!</h1>
-                        <p className="py-6">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
+            <div className="hero min-h-screen  py-12 ">
+                <div className="hero-content flex-col lg:flex-row-reverse shadow-2xl max-w-5xl mx-auto rounded-lg">
+                    <div className="">
+                      <img src={'https://i.ibb.co/j8zFdnM/authentication2.png'} alt="" />
                     </div>
-                    <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+                    <div className="card  w-full max-w-sm  ">
+                        <h3 className="text-4xl font-bold text-center">SingUp</h3>
                         <form onSubmit={handleSubmit(onSubmit)} className="card-body">
                             <div className="form-control">
                                 <label className="label">
@@ -106,15 +106,15 @@ const SinUp = () => {
                                 </label>
                             </div>
                             <div className="form-control mt-6">
-                                <input className="btn btn-primary" type="submit" value="Sign Up" />
+                                <input className="btn bg-[#D1A054B2] text-white" type="submit" value="Sign Up" />
                             </div>
                         </form>
-                        <p><small>Already have an account <Link to="/login">Login</Link></small></p>
+                        <p className="text-[#D1A054B2] text-center"> Already registered?<Link to={'/login'}><samp className=" font-bold">Go to log in</samp></Link> </p>
                        
                     </div>
                 </div>
             </div>
-        </>
+        </section>
     );
 };
 

@@ -4,6 +4,8 @@ import { AuthContext } from "../../provider/AuthProvider";
 import { useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import useAxiosURL from "../../huks/axiosUrl/useAxiosURL";
+import useCart from "../../huks/carthuk/useCart";
+
 
 
 const Foodcard = ({ item }) => {
@@ -12,9 +14,9 @@ const Foodcard = ({ item }) => {
   const navigate = useNavigate();
   const location = useLocation();
   const axiosSecure = useAxiosURL()
-
-  const handelAddtoCart = (item) => {
-    console.log(item);
+  const [,refetch] = useCart();
+  const handelAddtoCart = () => {
+   
     if (user && user.email) {
       const cartItem = {
         menuItemId: _id,
@@ -27,9 +29,9 @@ const Foodcard = ({ item }) => {
       .then(response => {
         const data = response.data;
         if (data.insertedId) {
-          // refetch();
+          refetch();
           Swal.fire({
-            position: "top-center",
+            position: "top",
             icon: "success",
             title: `${name} added on the cart.`,
             showConfirmButton: false,
@@ -38,7 +40,7 @@ const Foodcard = ({ item }) => {
         }
       })
       .catch(error => {
-        // Handle errors here
+      
         console.error('Error adding to cart:', error);
       });
       
@@ -72,9 +74,7 @@ const Foodcard = ({ item }) => {
         <p>{recipe}</p>
         <div className="card-actions">
           <button
-            onClick={() => {
-              handelAddtoCart(item);
-            }}
+           onClick={handelAddtoCart}
             className="btn btn-outline border-0 text-[#BB8506] border-[#BB8506] border-b-4 uppercase"
           >
             add to cart
@@ -86,7 +86,7 @@ const Foodcard = ({ item }) => {
 };
 
 Foodcard.propTypes = {
-  item: PropTypes.func,
+  item: PropTypes.object
 };
 
 export default Foodcard;

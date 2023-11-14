@@ -23,10 +23,10 @@ const Navbar = () => {
     <li ><Link to={"/menu"}>Menu</Link></li>
 
     <li>
-            <Link to="/">
+            <Link to="/dashbord/cart">
                 <button className=" gap-2">
                     <FaShoppingCart className="text-2xl"></FaShoppingCart>
-                    <div className="badge badge-secondary">+{cart?.length || 0}</div>
+                    <div className="badge badge-secondary">+{cart?.length }</div>
                 </button>
             </Link>
         </li>

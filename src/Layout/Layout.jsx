@@ -5,7 +5,7 @@ import Navbar from "../Pages/shareditem/navbar/Navbar";
 
 const Layout = () => {
     const location = useLocation();
-    const isloginout = location.pathname.includes('login')
+    const isloginout = location.pathname.includes('login') || location.pathname.includes('sinup')
     return (
         <div>
             {isloginout || <Navbar></Navbar>}

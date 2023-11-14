@@ -59,7 +59,7 @@ const Login = () => {
           <Helmet>
                 <title>Dhaka Spice | Login</title>
             </Helmet>
-            <div className="hero min-h-screen max-w-5xl mx-auto py-7 shadow-2xl shadow-slate-500">
+            <div className="hero min-h-screen max-w-5xl mx-auto py-12 shadow-2xl shadow-slate-500">
                 <div className="hero-content ">
                     <div className="">
                         <img src={'https://i.ibb.co/j8zFdnM/authentication2.png'} alt="" />
@@ -94,7 +94,7 @@ const Login = () => {
                                 <input disabled={isDisabled} className="btn bg-[#D1A054B2] text-white" type="submit" value="Login" />
                             </div>
                         </form>
-                        <p><small>New Here? <Link to="/sinup">Create an account</Link> </small></p>
+                        <p className="text-[#D1A054B2] text-center"> New here?<Link to={'sinup'}><samp className=" font-bold">Create a New Account</samp></Link> </p>
                        
                     </div>
                 </div>

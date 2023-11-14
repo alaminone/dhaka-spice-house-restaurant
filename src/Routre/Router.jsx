@@ -8,6 +8,8 @@ import Menu from "../Pages/menuPage/menuprofle/Menuprofile";
 import OrderPage from "../Pages/orderpage/OrderPage";
 import Login from "../Pages/login&out/Login";
 import SinUp from "../Pages/login&out/SinUp";
+import Dashbord from "../Layout/DASHBORD/Dashbord";
+import Cart from "../Layout/DASHBORD/Cart/Cart";
 
 
 
@@ -38,4 +40,14 @@ import SinUp from "../Pages/login&out/SinUp";
         }
       ]
     },
+    {
+      path:'dashbord',
+      element:<Dashbord></Dashbord>,
+      children:[
+        {
+          path:'cart',
+          element:<Cart></Cart>
+        }
+      ]
+    }
   ]);
