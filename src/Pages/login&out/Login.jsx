@@ -4,6 +4,7 @@ import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-s
 import { AuthContext } from "../../provider/AuthProvider";
 import Swal from "sweetalert2";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import Googlelogin from "../../components/googlelogin/Googlelogin";
 
 const Login = () => {
 
@@ -94,7 +95,8 @@ const Login = () => {
                                 <input disabled={isDisabled} className="btn bg-[#D1A054B2] text-white" type="submit" value="Login" />
                             </div>
                         </form>
-                        <p className="text-[#D1A054B2] text-center"> New here?<Link to={'sinup'}><samp className=" font-bold">Create a New Account</samp></Link> </p>
+                        <p className="text-[#D1A054B2] text-center"> New here?<Link to={'/sinup'}><samp className=" font-bold">Create a New Account</samp></Link> </p>
+                        <Googlelogin></Googlelogin>
                        
                     </div>
                 </div>

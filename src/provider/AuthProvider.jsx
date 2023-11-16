@@ -1,7 +1,7 @@
 import { createContext, useEffect, useState } from "react";
 import { GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
 
-// import axios from "axios";
+
 import { app } from "../firebase/firebase.config";
 
 export const AuthContext = createContext(null);
@@ -13,8 +13,7 @@ const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
 
-    const googleProvider = new GoogleAuthProvider();
-
+   
     const createUser = (email, password) => {
         setLoading(true);
         return createUserWithEmailAndPassword(auth, email, password)
@@ -25,10 +24,10 @@ const AuthProvider = ({ children }) => {
         return signInWithEmailAndPassword(auth, email, password);
     }
 
-    const googleSignIn = () =>{
-        setLoading(true);
-        return signInWithPopup(auth, googleProvider);
-    }
+    const logInWithGoogle = async () => {
+        const provider = new GoogleAuthProvider();
+        return signInWithPopup(auth , provider)
+      };
 
     const logOut = () => {
         setLoading(true);
@@ -44,21 +43,7 @@ const AuthProvider = ({ children }) => {
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, currentUser => {
             setUser(currentUser);
-            console.log('current user', currentUser);
-
-            // // get and set token
-            // if(currentUser){
-            //     axios.post('https://bistro-boss-server-fawn.vercel.app/jwt', {email: currentUser.email})
-            //     .then(data =>{
-            //         // console.log(data.data.token)
-            //         localStorage.setItem('access-token', data.data.token)
-            //         setLoading(false);
-            //     })
-            // }
-            // else{
-            //     localStorage.removeItem('access-token')
-            // }
-
+    
             
         });
         return () => {
@@ -71,7 +56,7 @@ const AuthProvider = ({ children }) => {
         loading,
         createUser,
         signIn,
-        googleSignIn,
+        logInWithGoogle,
         logOut,
         updateUserProfile
     }

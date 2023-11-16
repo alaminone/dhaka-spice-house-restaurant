@@ -20,7 +20,7 @@ const Dashbord = () => {
  </div>
           <ul className="menu p-4 w-8/12">
             <li>
-              <NavLink to="/dashboard/userhome">
+              <NavLink to="/">
                 <FaHome></FaHome> User Home
               </NavLink>
             </li>

@@ -1,21 +1,16 @@
-import { useEffect, useState } from "react";
-
+// import { useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 
 const useMenuhuk = () => {
-    const [menu , setmenu] = useState([]);
-    const [loding , setloding] = useState(true)
-
-    useEffect(()=>{
-        fetch('http://localhost:5001/menu')
-        .then(res => res.json())
-        .then(data =>{
-           
-            setmenu(data)
-            setloding(false)
-        })
-    },[])
+    const {data: menu = [], isLoading: loading, refetch} = useQuery({
+        queryKey: ['menu'],
+        queryFn: async() => {
+            const res = await fetch('http://localhost:5001/menu');
+            return res.json();
+        }
+    })
     
-    return [menu,loding]
+    return [menu,loading , refetch]
 };
 
 export default useMenuhuk;
