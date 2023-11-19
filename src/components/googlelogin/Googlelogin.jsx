@@ -1,39 +1,47 @@
 import { FaGoogle } from "react-icons/fa";
-import  { AuthContext } from "../../provider/AuthProvider";
+import { AuthContext } from "../../provider/AuthProvider";
 import { useContext } from "react";
-import { useLocation } from "react-router-dom";
-
-
+import useAxiosOpen from "../../huks/openapi/useAxiosOpen";
+import { useNavigate } from "react-router-dom";
 
 const Googlelogin = () => {
+  const { logInWithGoogle } = useContext(AuthContext);
+  const axiosopenApi = useAxiosOpen();
+  const naviget = useNavigate()
 
-    const {logInWithGoogle} = useContext(AuthContext)
-  const loction = useLocation()
 
-    // console.log(first)
-
- const handleGooglelogin = () =>{
+  const handleGooglelogin = () => {
     logInWithGoogle()
-    .then(result => {
-      console.log(result);
-      loction('/')
-    })
-    .catch(error => {
-      console.error('Error during Google sign-in:', error);
-    });
- }
+      .then((result) => {
+        console.log(result.user);
+        const userInfo = {
+          name: result.user?.displayName,
+          email: result.user?.email,
+        };
 
+        axiosopenApi.post("/users", userInfo).then((res) => {
+          console.log(res);
+        });
+        naviget('/')
+      })
+      .catch((error) => {
+        console.error("Error during Google sign-in:", error);
+      });
+  };
 
-    return (
-        <div className="w-full">
-        <div className="divider"></div>
-        <div className="w-full text-center my-4">
-            <button onClick={handleGooglelogin} className="btn w-3/5 mx-auto btn-outline">
-                <FaGoogle></FaGoogle>
-            </button>
-        </div>
+  return (
+    <div className="w-full">
+      <div className="divider"></div>
+      <div className="w-full text-center my-4">
+        <button
+          onClick={handleGooglelogin}
+          className="btn w-3/5 mx-auto btn-outline"
+        >
+          <FaGoogle></FaGoogle>
+        </button>
+      </div>
     </div>
-    );
+  );
 };
 
 export default Googlelogin;

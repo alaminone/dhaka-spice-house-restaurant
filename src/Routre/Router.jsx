@@ -10,6 +10,7 @@ import Login from "../Pages/login&out/Login";
 import SinUp from "../Pages/login&out/SinUp";
 import Dashbord from "../Layout/DASHBORD/Dashbord";
 import Cart from "../Layout/DASHBORD/Cart/Cart";
+import AllUsers from "../Layout/DASHBORD/allusers/AllUsers";
 
 
 
@@ -47,6 +48,10 @@ import Cart from "../Layout/DASHBORD/Cart/Cart";
         {
           path:'cart',
           element:<Cart></Cart>
+        },
+        {
+          path:'allusers',
+          element:<AllUsers></AllUsers>
         }
       ]
     }

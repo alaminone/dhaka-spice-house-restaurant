@@ -1,14 +1,11 @@
-import { Helmet } from "react-helmet-async";
 
+import { Helmet } from "react-helmet-async";
 import { FaTrashAlt } from "react-icons/fa";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
 import useCart from "../../../huks/carthuk/useCart";
-
 import SectionTitle from "../../../components/sectiontitle/SectionTitle";
 import useAxiosURL from "../../../huks/axiosUrl/useAxiosURL";
-
-
 
 const Cart = () => {
   const [cart, refetch] = useCart();
@@ -27,12 +24,16 @@ const Cart = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        axiosSecure.delete(`/cart/${item._id}`)
+        axiosSecure
+          .delete(`/cart/${item._id}`)
           .then((response) => {
-            console.log(response)
             if (response.data) {
               refetch();
-              Swal.fire("Deleted!", "Your file has been deleted.", "success");
+              Swal.fire(
+                "Deleted!",
+                "Your file has been deleted.",
+                "success"
+              );
             } else {
               Swal.fire("Error", "Failed to delete the item.", "error");
             }
@@ -44,7 +45,6 @@ const Cart = () => {
       }
     });
   };
-  
 
   return (
     <section>

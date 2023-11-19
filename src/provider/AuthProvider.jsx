@@ -3,6 +3,7 @@ import { GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, onAuthStat
 
 
 import { app } from "../firebase/firebase.config";
+import useAxiosOpen from "../huks/openapi/useAxiosOpen";
 
 export const AuthContext = createContext(null);
 
@@ -10,6 +11,7 @@ const auth = getAuth(app);
 
 // eslint-disable-next-line react/prop-types
 const AuthProvider = ({ children }) => {
+    const axiosopenApi = useAxiosOpen()
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
 
@@ -43,7 +45,17 @@ const AuthProvider = ({ children }) => {
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, currentUser => {
             setUser(currentUser);
-    
+            if(currentUser){
+                axiosopenApi.post('/jwt', {email: currentUser.email})
+                .then(data =>{
+                    console.log(data.data.token)
+                    localStorage.setItem('jwt-token', data.data.token)
+                    setLoading(false);
+                })
+            }
+            else{
+                localStorage.removeItem('jwt-token')
+            }
             
         });
         return () => {

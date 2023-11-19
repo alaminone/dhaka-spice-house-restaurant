@@ -3,7 +3,7 @@ import { Helmet } from "react-helmet-async";
 import { useForm } from "react-hook-form";
 
 import { Link, useNavigate } from "react-router-dom";
-import Swal from 'sweetalert2'
+// import Swal from 'sweetalert2'
 
 import { AuthContext } from "../../provider/AuthProvider";
 import useAxiosOpen from "../../huks/openapi/useAxiosOpen";
@@ -11,7 +11,7 @@ import Googlelogin from "../../components/googlelogin/Googlelogin";
 
 const SinUp = () => {
 
-    const { register, handleSubmit, reset, formState: { errors } } = useForm();
+    const { register, handleSubmit,  formState: { errors } } = useForm();
     const { createUser, updateUserProfile } = useContext(AuthContext);
     const navigate = useNavigate();
     const axiosopenApi = useAxiosOpen();
@@ -28,20 +28,14 @@ const SinUp = () => {
                     .then(() => {
                         const userInfo = { name: data.name, email: data.email }
 
-                        axiosopenApi.post('/users' , userInfo)
-                            .then(res => {
-                                if (res.data.insertedId) {
-                                    reset();
-                                    Swal.fire({
-                                        position: 'top-end',
-                                        icon: 'success',
-                                        title: 'User created successfully.',
-                                        showConfirmButton: false,
-                                        timer: 1500
-                                    });
-                                    navigate('/');
-                                }
-                            })
+                        axiosopenApi.post("/users", userInfo).then((res) => {
+                            console.log(res);
+                          });
+                          navigate('/')
+                        })
+                        .catch((error) => {
+                          console.error("Error during Google sign-in:", error);
+                        
 
 
 
