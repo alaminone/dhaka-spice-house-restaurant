@@ -1,10 +1,12 @@
 import {
   FaBook,
+  // FaBookMedical,
   FaCalendarAlt,
   FaFileContract,
   FaHome,
   FaShoppingBag,
   FaShoppingCart,
+  // FaStreetView,
   FaUserMinus,
   FaUsers,
   FaUtensils,
@@ -12,11 +14,13 @@ import {
 } from "react-icons/fa";
 import { NavLink, Outlet } from "react-router-dom";
 import useCart from "../../huks/carthuk/useCart";
+import useAdmin from "../../huks/admin/useAdmin";
 
 const Dashbord = () => {
   const [cart] = useCart();
-  const isAdmin = true;
-
+  const [isAdmin] = useAdmin();
+ 
+  // 
   return (
     <section className="max-w-7xl mx-auto">
       <div className="flex">
@@ -39,13 +43,13 @@ const Dashbord = () => {
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink to="/dashboard/addItem">
+                  <NavLink to="additems">
                     {" "}
                     <FaUtensils></FaUtensils> Add an Item
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink to="/dashboard/manageitems">
+                  <NavLink to="manageitems">
                     <FaWallet></FaWallet> Manage Items
                   </NavLink>
                 </li>
@@ -60,7 +64,9 @@ const Dashbord = () => {
                   </NavLink>
                 </li>
               </>
-            ) : (
+            ) 
+            : 
+            (
               <>
                 <li>
                   <NavLink to="/dashboard/userhome">
@@ -78,7 +84,7 @@ const Dashbord = () => {
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink to="/dashboard/mycart">
+                  <NavLink to="cart">
                     <FaShoppingCart></FaShoppingCart> My Cart
                     <span className="badge inl badge-secondary">
                       +{cart?.length || 0}

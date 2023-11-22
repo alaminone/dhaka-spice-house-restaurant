@@ -11,6 +11,10 @@ import SinUp from "../Pages/login&out/SinUp";
 import Dashbord from "../Layout/DASHBORD/Dashbord";
 import Cart from "../Layout/DASHBORD/Cart/Cart";
 import AllUsers from "../Layout/DASHBORD/allusers/AllUsers";
+import AddItems from "../Layout/DASHBORD/additems/AddItems";
+import Manageitem from "../Layout/DASHBORD/manageitem/Manageitem";
+import Adminroute from "./Adminroute";
+import Updateitem from "../Layout/DASHBORD/manageitem/Updateitem";
 
 
 
@@ -45,14 +49,33 @@ import AllUsers from "../Layout/DASHBORD/allusers/AllUsers";
       path:'dashbord',
       element:<Dashbord></Dashbord>,
       children:[
+        // user
         {
           path:'cart',
           element:<Cart></Cart>
         },
+        // addmin
         {
           path:'allusers',
-          element:<AllUsers></AllUsers>
+          element:<Adminroute><AllUsers></AllUsers></Adminroute>
+        },
+        {
+          path:'additems',
+          element:<Adminroute><AddItems></AddItems></Adminroute>
+        },
+        {
+          path:'manageitems',
+          element:<Adminroute><Manageitem></Manageitem></Adminroute>
+        },
+        {
+          path:"updateitem/:id",
+          element:<Adminroute><Updateitem></Updateitem></Adminroute>,
+          loader:({params})=> fetch(`http://localhost:5001/menu/${params.id}`)
         }
+        
+        
+      
+        
       ]
     }
   ]);

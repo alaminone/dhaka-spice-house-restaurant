@@ -9,18 +9,14 @@ import SectionTitle from "../../../components/sectiontitle/SectionTitle";
 const AllUsers = () => {
   const axiosSecure = useAxiosURL();
 
-  const { data: users = [], refetch } = useQuery({
+  const { data: users = [],isLoading, refetch } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
-      const res = await axiosSecure.get("/users",{
-        headers:{
-          authorization:`Bearer ${localStorage.getItem('jwt-token')}`
-        }
-      });
+      const res = await axiosSecure.get("/users");
       return res.data;
     },
   });
-
+console.log(users)
   const handleMakeAdmin = (user) => {
     axiosSecure.patch(`/users/admin/${user._id}`).then((res) => {
       if (res.data.modifiedCount) {
@@ -64,6 +60,7 @@ const AllUsers = () => {
       }
     });
   };
+  if(isLoading) return <p> loding ......</p>
   return (
     <div className="w-full">
       <Helmet>

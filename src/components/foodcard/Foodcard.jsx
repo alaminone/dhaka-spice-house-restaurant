@@ -3,20 +3,18 @@ import { useContext } from "react";
 import { AuthContext } from "../../provider/AuthProvider";
 import { useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
-import useAxiosURL from "../../huks/axiosUrl/useAxiosURL";
+
 import useCart from "../../huks/carthuk/useCart";
-
-
+import useAxiosOpen from "../../huks/openapi/useAxiosOpen";
 
 const Foodcard = ({ item }) => {
   const { name, recipe, image, price, _id } = item;
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
-  const axiosSecure = useAxiosURL()
-  const [,refetch] = useCart();
+  const axiosopenApi = useAxiosOpen();
+  const [, refetch] = useCart();
   const handelAddtoCart = () => {
-   
     if (user && user.email) {
       const cartItem = {
         menuItemId: _id,
@@ -25,25 +23,24 @@ const Foodcard = ({ item }) => {
         price,
         email: user.email,
       };
-      axiosSecure.post("/cart", cartItem)
-      .then(response => {
-        const data = response.data;
-        if (data.insertedId) {
-          refetch();
-          Swal.fire({
-            position: "top",
-            icon: "success",
-            title: `${name} added on the cart.`,
-            showConfirmButton: false,
-            timer: 1500,
-          });
-        }
-      })
-      .catch(error => {
-      
-        console.error('Error adding to cart:', error);
-      });
-      
+      axiosopenApi
+        .post("/cart", cartItem)
+        .then((response) => {
+          const data = response.data;
+          if (data.insertedId) {
+            refetch();
+            Swal.fire({
+              position: "top",
+              icon: "success",
+              title: `${name} added on the cart.`,
+              showConfirmButton: false,
+              timer: 1500,
+            });
+          }
+        })
+        .catch((error) => {
+          console.error("Error adding to cart:", error);
+        });
     } else {
       Swal.fire({
         title: "Please login to order the food",
@@ -61,7 +58,7 @@ const Foodcard = ({ item }) => {
   };
 
   return (
-    <div className="card w-96 bg-base-100 shadow-xl">
+    <div className="card bg-base-100 shadow-xl">
       <figure className="">
         <img src={image} alt="Shoes" className="rounded-xl" />
       </figure>
@@ -74,7 +71,7 @@ const Foodcard = ({ item }) => {
         <p>{recipe}</p>
         <div className="card-actions">
           <button
-           onClick={handelAddtoCart}
+            onClick={handelAddtoCart}
             className="btn btn-outline border-0 text-[#BB8506] border-[#BB8506] border-b-4 uppercase"
           >
             add to cart
@@ -86,7 +83,7 @@ const Foodcard = ({ item }) => {
 };
 
 Foodcard.propTypes = {
-  item: PropTypes.object
+  item: PropTypes.object,
 };
 
 export default Foodcard;

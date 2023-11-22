@@ -48,7 +48,7 @@ const AuthProvider = ({ children }) => {
             if(currentUser){
                 axiosopenApi.post('/jwt', {email: currentUser.email})
                 .then(data =>{
-                    console.log(data.data.token)
+                    // console.log(data.data.token)
                     localStorage.setItem('jwt-token', data.data.token)
                     setLoading(false);
                 })
@@ -61,7 +61,7 @@ const AuthProvider = ({ children }) => {
         return () => {
             return unsubscribe();
         }
-    }, [])
+    }, [axiosopenApi])
 
     const authInfo = {
         user,
