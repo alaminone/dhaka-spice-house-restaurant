@@ -15,7 +15,7 @@ const axiosSecure = axios.create({
     axiosSecure.interceptors.request.use(function (config) {
       // Intercepting the request to add the Authorization header
       const token = localStorage.getItem('jwt-token');
-      console.log('request stopped by interceptors', token);
+      // console.log('request stopped by interceptors', token);
       config.headers.authorization = `Bearer ${token}`;
       return config;
     }, function (error) {

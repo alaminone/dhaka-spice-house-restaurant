@@ -1,12 +1,12 @@
 import {
   FaBook,
-  // FaBookMedical,
+
   FaCalendarAlt,
   FaFileContract,
   FaHome,
   FaShoppingBag,
   FaShoppingCart,
-  // FaStreetView,
+
   FaUserMinus,
   FaUsers,
   FaUtensils,
@@ -38,7 +38,7 @@ const Dashbord = () => {
             {isAdmin ? (
               <>
                 <li>
-                  <NavLink to="/dashboard/adminhome">
+                  <NavLink to="/dashbord/adminhome">
                     <FaHome></FaHome> Admin Home
                   </NavLink>
                 </li>
@@ -59,7 +59,7 @@ const Dashbord = () => {
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink to="allusers">
+                  <NavLink to="/dashbord/allusers">
                     <FaUsers></FaUsers> All Users
                   </NavLink>
                 </li>
@@ -69,7 +69,7 @@ const Dashbord = () => {
             (
               <>
                 <li>
-                  <NavLink to="/dashboard/userhome">
+                  <NavLink to="/dashbord/userhome">
                     <FaHome></FaHome> User Home
                   </NavLink>
                 </li>
@@ -79,12 +79,12 @@ const Dashbord = () => {
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink to="/">
+                  <NavLink to="/dashbord/paymentHistory">
                     <FaWallet></FaWallet> Payment History
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink to="cart">
+                  <NavLink to="/dashbord/cart">
                     <FaShoppingCart></FaShoppingCart> My Cart
                     <span className="badge inl badge-secondary">
                       +{cart?.length || 0}
@@ -94,39 +94,7 @@ const Dashbord = () => {
               </>
             )}
 
-            {/* <li>
-              <NavLink to="/">
-                <FaHome></FaHome> User Home
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to="/">
-                <FaCalendarAlt></FaCalendarAlt> Reservations
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to="/">
-                <FaWallet></FaWallet> Payment History
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to="/dashbord/cart">
-                <FaShoppingCart></FaShoppingCart> My Cart
-                <span className="badge inl badge-secondary">
-                  +{cart?.length || 0}
-                </span>
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to="/">
-                <FaStreetView></FaStreetView> Add Review
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to="/">
-                <FaBookMedical></FaBookMedical> My Booking
-              </NavLink>
-            </li> */}
+        
 
             {/* common */}
             <div className="divider"></div>

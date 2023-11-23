@@ -60,7 +60,7 @@ const Cart = () => {
       <div className="uppercase font-semibold h-[60px] flex justify-evenly items-center">
         <h3 className="text-2xl">Total Items: {cart.length}</h3>
         <h3 className="text-1xl">Total Price: ${total}</h3>
-        <Link to="">
+        <Link to="/dashbord/payment">
           <button className="btn btn-warning btn-sm">PAY</button>
         </Link>
       </div>

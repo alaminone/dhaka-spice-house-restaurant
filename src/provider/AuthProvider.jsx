@@ -55,6 +55,7 @@ const AuthProvider = ({ children }) => {
             }
             else{
                 localStorage.removeItem('jwt-token')
+                setLoading(false);
             }
             
         });
